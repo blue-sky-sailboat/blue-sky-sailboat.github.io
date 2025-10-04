@@ -5,10 +5,14 @@
 website:
   title: "Your Hub"
   site-url: "https://blue-sky-sailboat.github.io"
+  search:
+    location: navbar
+    type: overlay
 
 format:
   html:
     toc: true
+    page-navigation: true
     include-in-header:
       - cfwa.html
     include-after-body:
@@ -18,10 +22,3 @@ execute:
   cache: true
 
 lang: ko
-
-search:
-  location: navbar
-  type: overlay
-
-page-navigation: true
-
