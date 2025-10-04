@@ -1,66 +1,6 @@
-﻿---
-title: "랜딩 페이지 버튼 색상 A/B 테스트: 문제→지표→설계→실험"
-date: 2025-10-04
-categories: [ab-testing, product-analytics]
-bibliography: ../references.bib
-page-layout: article
-title-block-banner: true
-toc: true
-toc-depth: 3
-execute:
-  echo: true
-  eval: false   # 지금은 실행 없이 '보기'만; 나중에 true로 바꿔 재현 가능
----
-
-이 글은 **산업공학(IME) 관점의 흐름**—_문제 정의 → 지표 설계 → 실험 설계 → 실험 실행_—으로 A/B 테스트를 기록하는 **템플릿 겸 예시**입니다. 실제 숫자는 예시이며, 구조만 복사해 다음 글에 응용하세요.
-
-## 1) 문제 정의 (Problem)
-- **배경**: 랜딩 페이지에서 회원가입으로 이어지는 전환율(CVR)이 낮다.
-- **가설**: 버튼 색상을 기존 회색(A)에서 파랑(B)으로 바꾸면 **가시성↑ → 클릭↑ → CVR↑**가 될 것이다.
-- **제약/조건**: 메시지·레이아웃 동일, 버튼 색상만 변경. 모바일/데스크탑 혼합 트래픽. 주중·주말 효과 가능.
-
-> 핵심: “버튼 색상”이라는 **단일 처리**가 **회원가입 전환율**에 **일관된 양(+)의 영향**을 주는지.
-
-## 2) 지표 설계 (Metrics)
-- **Primary Metric(주지표)**: CVR = 가입 완료수 / 랜딩 유입수  — 비즈니스 목표와 직접 연결.
-- **Guardrails(가드레일)**: 이탈률, 페이지 로드 시간, 고객센터 문의 증가 — 부작용 감지.
-- **효과크기(MDE)**: 상대 +5% 감지 목표(설계 가정).
-- **표본수**: 유입 10k/일 × 7일 → 각 군 n≈35k 가정(대략).
-
-## 3) 실험 설계 (Design)
-- **랜덤화**: 유저 단위 무작위 배정(50:50), 쿠키/로그인 ID 기반 고정화.
-- **기간**: 1주(주중·주말 포함), 명절/이벤트 제외.
-- **분석 계획**: 사전 등록(지표·MDE·검정 방향 “B>A”). _중간 중단 금지_.
-- **데이터 수집**: PageView, Click, SignUp 완료(타임스탬프, 디바이스, 실험군 태그).
-
-### 설계 체크리스트
-- [x] 단일 처리(버튼 색)만 변경  
-- [x] 주지표/가드레일 사전 고정  
-- [x] 유저 단위 랜덤화 & 재노출 일관성  
-- [x] 실험 기간 잠금(look-elsewhere 방지)
-
-## 4) 실험 실행 (Experiment)
-> 아래 코드는 **예시**입니다. `execute.eval: false`라서 지금은 “보여주기”만 합니다.
-
-```{python}
-# 예시 숫자 (A군: 기존 회색, B군: 파랑)
-import numpy as np
-from statsmodels.stats.proportion import proportions_ztest
-
-# 가입 완료수 / 노출수 (가상의 집계)
-success = np.array([430, 490])   # A, B
-nobs    = np.array([10000, 10050])
-
-z, p = proportions_ztest(success, nobs, alternative="smaller")  # A < B 검정
-lift = success[1]/nobs[1] - success[0]/nobs[0]
-
-z, p, float(lift)
-# references.bib 이 없을 때만 생성
-if (-not (Test-Path .\references.bib)) {
-@'
 @article{kim2023,
   title={A sample reference},
   author={Kim, Someone},
   journal={Journal of Examples},
   year={2023}
-}} 
+}
