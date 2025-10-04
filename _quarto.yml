@@ -1,11 +1,6 @@
 ﻿project:
   type: website
   output-dir: _site
-website:
-  title: "Your Hub"
-format:
-  html:
-    toc: true
 
 website:
   title: "Your Hub"
@@ -21,5 +16,13 @@ website:
 
 format:
   html:
+    toc: true
+    include-in-header:
+      - cfwa.html
     include-after-body:
       - giscus.html
+
+execute:
+  cache: true
+
+lang: ko
