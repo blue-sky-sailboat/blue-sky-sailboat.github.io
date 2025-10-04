@@ -6,3 +6,15 @@ website:
 format:
   html:
     toc: true
+
+website:
+  title: "Your Hub"
+  site-url: "https://blue-sky-sailboat.github.io"
+  navbar:
+    left:
+      - text: Tech
+        href: tech/index.qmd
+      - text: Projects
+        href: projects/index.qmd
+      - text: Life
+        href: life/index.qmd
