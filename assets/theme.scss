@@ -1,33 +1,26 @@
-﻿/* ========== 브랜드 변수(밝은 테마) ========== */
-$primary: #2563eb;               /* 브랜드 메인(파랑) */
-$secondary: #64748b;             /* 보조(슬레이트) */
+﻿/*-- scss:defaults --*/
+$primary: #2563eb;
+$secondary: #64748b;
 $success: #16a34a;
 $info: #0ea5e9;
 $warning: #f59e0b;
 $danger: #ef4444;
 
-/* 폰트 (시스템 글꼴 우선) */
 $font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans KR", Arial, "Apple SD Gothic Neo", "Malgun Gothic", "맑은 고딕", sans-serif;
 
-/* 본문 최대폭 */
-$content-max-width: 980px;
-
-/* 네비게이션 */
 $navbar-bg: #ffffff;
 $navbar-fg: #0f172a;
 $navbar-brand-color: $primary;
 
-/* 코드블록 */
-$code-block-bg: #0b1020;
+$content-max-width: 980px;
 
-/* ========== 다크 모드 변수(선호 색상) ========== */
+/*-- scss:rules --*/
 [data-bs-theme="dark"] {
   --bs-body-bg: #0b1020;
   --bs-body-color: #d1d5db;
   --bs-link-color: #93c5fd;
 }
 
-/* ========== 카드형 목록(리스팅) ========== */
 .quarto-listing .card {
   border: none;
   border-radius: 20px;
@@ -45,8 +38,9 @@ $code-block-bg: #0b1020;
   border-top-right-radius: 20px;
 }
 
-/* ========== 본문 가독성 ========== */
 main.content { max-width: $content-max-width; }
 h1,h2,h3 { letter-spacing: -0.2px; }
 p { line-height: 1.75; }
+
 div.sourceCode, pre code { border-radius: 14px; }
+pre code { background: #0b1020; }
