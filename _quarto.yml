@@ -5,7 +5,7 @@
   - google4b3783a88141371f.html
 
 website:
-  title: "Your Hub"
+  title: "My Hub"
   site-url: "https://blue-sky-sailboat.github.io"
   search:
     location: navbar
@@ -21,6 +21,7 @@ website:
     right:
       - icon: github
         href: https://github.com/blue-sky-sailboat
+
 format:
   html:
     theme: [cosmo, assets/theme.scss]
