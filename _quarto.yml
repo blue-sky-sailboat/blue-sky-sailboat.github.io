@@ -18,3 +18,8 @@ website:
         href: projects/index.qmd
       - text: Life
         href: life/index.qmd
+
+format:
+  html:
+    include-after-body:
+      - giscus.html
