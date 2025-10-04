@@ -2,11 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://blue-sky-sailboat.github.io/tech/index.html</loc>
-    <lastmod>2025-10-04T05:32:42.400Z</lastmod>
+    <lastmod>2025-10-04T06:10:41.257Z</lastmod>
   </url>
   <url>
     <loc>https://blue-sky-sailboat.github.io/life/index.html</loc>
-    <lastmod>2025-10-04T05:32:42.446Z</lastmod>
+    <lastmod>2025-10-04T06:10:45.922Z</lastmod>
+  </url>
+  <url>
+    <loc>https://blue-sky-sailboat.github.io/about.html</loc>
+    <lastmod>2025-10-04T06:11:54.313Z</lastmod>
   </url>
   <url>
     <loc>https://blue-sky-sailboat.github.io/index.html</loc>
@@ -14,6 +18,6 @@
   </url>
   <url>
     <loc>https://blue-sky-sailboat.github.io/projects/index.html</loc>
-    <lastmod>2025-10-04T05:32:42.421Z</lastmod>
+    <lastmod>2025-10-04T06:10:45.892Z</lastmod>
   </url>
 </urlset>
