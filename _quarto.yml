@@ -5,7 +5,6 @@
 website:
   title: "Your Hub"
   site-url: "https://blue-sky-sailboat.github.io"
-      right:\n      - icon: github\n        href: https://github.com/blue-sky-sailboat\n      - icon: linkedin\n        href: https://www.linkedin.com/in/여기에-아이디\n        href: life/index.qmd
 
 format:
   html:
