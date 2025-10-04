@@ -24,7 +24,7 @@ website:
 
 format:
   html:
-    theme: [cosmo, assets/theme.scss]
+    theme: [cosmo, assets/site-theme.scss]
     toc: true
     page-navigation: true
     include-in-header:

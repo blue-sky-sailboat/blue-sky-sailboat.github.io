@@ -1,4 +1,4 @@
-﻿/*-- scss:defaults --*/
+/*-- scss:defaults --*/
 $primary: #2563eb;
 $secondary: #64748b;
 $success: #16a34a;
@@ -13,6 +13,7 @@ $navbar-fg: #0f172a;
 $navbar-brand-color: $primary;
 
 $content-max-width: 980px;
+$code-block-bg: #0b1020;
 
 /*-- scss:rules --*/
 [data-bs-theme="dark"] {
@@ -39,8 +40,8 @@ $content-max-width: 980px;
 }
 
 main.content { max-width: $content-max-width; }
-h1,h2,h3 { letter-spacing: -0.2px; }
+h1, h2, h3 { letter-spacing: -0.2px; }
 p { line-height: 1.75; }
 
 div.sourceCode, pre code { border-radius: 14px; }
-pre code { background: #0b1020; }
+pre code { background: $code-block-bg; }

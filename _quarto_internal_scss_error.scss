@@ -1041,19 +1041,6 @@ $theme-name: null !default;
 
 ﻿/*-- scss:defaults --*/
 $primary: #2563eb;
-$secondary: #64748b;
-$success: #16a34a;
-$info: #0ea5e9;
-$warning: #f59e0b;
-$danger: #ef4444;
-
-$font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans KR", Arial, "Apple SD Gothic Neo", "Malgun Gothic", "맑은 고딕", sans-serif;
-
-$navbar-bg: #ffffff;
-$navbar-fg: #0f172a;
-$navbar-brand-color: $primary;
-
-$content-max-width: 980px;
 
 
 // Heading font size customization
@@ -12941,35 +12928,7 @@ body {
 
 // quarto-scss-analysis-annotation { "origin": null }
 
-[data-bs-theme="dark"] {
-  --bs-body-bg: #0b1020;
-  --bs-body-color: #d1d5db;
-  --bs-link-color: #93c5fd;
-}
-
-.quarto-listing .card {
-  border: none;
-  border-radius: 20px;
-  box-shadow: 0 10px 30px rgba(0,0,0,.08);
-  transition: transform .12s ease, box-shadow .12s ease;
-}
-.quarto-listing .card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 14px 40px rgba(0,0,0,.12);
-}
-.quarto-listing .card-img-top {
-  height: 180px;
-  object-fit: cover;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
-}
-
-main.content { max-width: $content-max-width; }
-h1,h2,h3 { letter-spacing: -0.2px; }
-p { line-height: 1.75; }
-
-div.sourceCode, pre code { border-radius: 14px; }
-pre code { background: #0b1020; }
+h1 { color: $primary; }
 
 
 // quarto-scss-analysis-annotation { "origin": null }
