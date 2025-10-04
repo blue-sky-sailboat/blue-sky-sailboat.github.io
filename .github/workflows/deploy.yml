@@ -31,8 +31,22 @@ jobs:
 
       - uses: quarto-dev/quarto-actions/setup@v2
 
-      - name: Render site
-        run: quarto render
+      - name: Show versions & tree
+        run: |
+          python --version
+          pip show jupyter nbformat numpy statsmodels || true
+          quarto --version
+          echo "---- _quarto.yml ----"
+          cat _quarto.yml || true
+          echo "---- tree ----"
+          ls -la
+
+      - name: Render site (debug)
+        run: |
+          set -euxo pipefail
+          quarto check install
+          # 디버그 로그 + 캐시 무시
+          quarto render --log-level debug --no-cache 2>&1 | tee render-debug.log
 
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
@@ -41,6 +55,14 @@ jobs:
         uses: actions/upload-pages-artifact@v4
         with:
           path: _site
+
+      # 실패 시 디버그 로그 업로드
+      - name: Upload render log on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: render-debug-log
+          path: render-debug.log
 
   deploy:
     environment:
