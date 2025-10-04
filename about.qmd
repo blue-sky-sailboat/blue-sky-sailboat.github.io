@@ -1,0 +1,4 @@
+﻿---
+title: "About"
+---
+간단한 소개, 관심 분야, 연락 링크(이메일/LinkedIn/GitHub)를 적습니다.

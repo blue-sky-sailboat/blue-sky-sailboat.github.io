@@ -1,4 +1,9 @@
 ﻿---
 title: "Projects"
+listing:
+  contents: "*.qmd"
+  sort: "date desc"
+  type: grid
+  page-size: 12
 ---
 프로젝트 요약과 산출물 링크(리포지토리, 보고서, 데모)를 모읍니다.

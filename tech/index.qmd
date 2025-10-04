@@ -1,4 +1,10 @@
 ﻿---
 title: "Tech"
+listing:
+  contents: "*.qmd"
+  sort: "date desc"
+  type: grid
+  categories: true
+  page-size: 12
 ---
 기술 글(딥다이브, 튜토리얼, 재현성 노트)을 정리합니다.

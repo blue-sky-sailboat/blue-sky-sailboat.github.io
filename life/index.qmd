@@ -1,4 +1,9 @@
 ﻿---
 title: "Life"
+listing:
+  contents: "*.qmd"
+  sort: "date desc"
+  type: list
+  page-size: 12
 ---
 작업 루틴/회고, 현장 스케치(학회·세미나), 도구 사용기를 가볍게 남깁니다.
