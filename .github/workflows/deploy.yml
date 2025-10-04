@@ -11,7 +11,7 @@ permissions:
   id-token: write
 
 concurrency:
-  group: "pages"
+  group: pages
   cancel-in-progress: true
 
 jobs:
@@ -41,9 +41,6 @@ jobs:
         uses: actions/upload-pages-artifact@v4
         with:
           path: _site
-            - uses: actions/setup-python@v5
-        with:
-          python-version: "3.11"
 
   deploy:
     environment:

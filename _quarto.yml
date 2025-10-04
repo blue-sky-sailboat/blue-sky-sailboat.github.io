@@ -35,5 +35,7 @@ format:
 
 execute:
   cache: true
+  echo: true
+  eval: true
 
 lang: ko

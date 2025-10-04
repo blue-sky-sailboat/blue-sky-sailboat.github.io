@@ -9,7 +9,7 @@ toc: true
 toc-depth: 3
 execute:
   echo: true
-  eval: false
+  eval: true
 ---
 
 이 글은 **산업공학(IME) 관점의 흐름**—_문제 정의 → 지표 설계 → 실험 설계 → 실험 실행_—으로 A/B 테스트를 기록하는 템플릿 겸 예시입니다.
