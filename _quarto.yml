@@ -21,15 +21,16 @@ website:
     right:
       - icon: github
         href: https://github.com/blue-sky-sailboat
-
 format:
   html:
+    theme: [cosmo, assets/theme.scss]
     toc: true
     page-navigation: true
     include-in-header:
       - cfwa.html
     include-after-body:
       - giscus.html
+
 
 execute:
   cache: true
