@@ -1,6 +1,8 @@
 ﻿project:
   type: website
   output-dir: _site
+  resources:
+  - google4b3783a88141371f.html
 
 website:
   title: "Your Hub"
