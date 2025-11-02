@@ -1,0 +1,9 @@
+{"kind": "ConfigMissing", "userMessage": "소스 설정 파일을 찾을 수 없습니다.", "logMessage": "no config at tools/jobs_sources.json"}
+{"source": "acme-rss", "kind": "FetchError", "userMessage": "원문을 불러오지 못했습니다.", "logMessage": "<urlopen error [Errno 11001] getaddrinfo failed>", "url": "https://acme.example.com/jobs/feed.xml"}
+{"source": "smart-factory", "kind": "FetchError", "userMessage": "원문을 불러오지 못했습니다.", "logMessage": "<urlopen error [Errno 11001] getaddrinfo failed>", "url": "https://smartfactory.example.com/careers"}
+{"source": "acme-rss", "kind": "FetchError", "userMessage": "원문을 불러오지 못했습니다.", "logMessage": "<urlopen error [Errno 11001] getaddrinfo failed>", "url": "https://acme.example.com/jobs/feed.xml"}
+{"source": "smart-factory", "kind": "FetchError", "userMessage": "원문을 불러오지 못했습니다.", "logMessage": "<urlopen error [Errno 11001] getaddrinfo failed>", "url": "https://smartfactory.example.com/careers"}
+{"source": "acme-rss", "kind": "FetchError", "userMessage": "원문을 불러오지 못했습니다.", "logMessage": "<urlopen error [Errno 11001] getaddrinfo failed>", "url": "https://acme.example.com/jobs/feed.xml"}
+{"source": "smart-factory", "kind": "FetchError", "userMessage": "원문을 불러오지 못했습니다.", "logMessage": "<urlopen error [Errno 11001] getaddrinfo failed>", "url": "https://smartfactory.example.com/careers"}
+{"source": "smart-factory", "kind": "Normalize", "userMessage": "제목이 비어 있어 건너뜁니다.", "logMessage": "missing title"}
+{"source": "smart-factory", "kind": "Normalize", "userMessage": "제목이 비어 있어 건너뜁니다.", "logMessage": "missing title"}
