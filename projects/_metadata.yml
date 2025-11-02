@@ -1,8 +1,0 @@
-﻿title-block-banner: true
-toc: true
-toc-depth: 3
-page-layout: article
-format:
-  html:
-    code-fold: true
-    number-sections: false
