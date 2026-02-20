@@ -1,5 +1,10 @@
 ---
 title: "Posts"
+listing:
+  contents: .
+  sort: "date desc"
+  type: grid
+  categories: true
+  fields: [date, title, description, categories]
+  page-size: 12
 ---
-
-여기에 글 목록을 둘 거예요.
