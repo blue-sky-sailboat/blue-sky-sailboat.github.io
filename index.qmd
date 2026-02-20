@@ -1,0 +1,12 @@
+---
+title: "Blue Sky Sailboat"
+---
+
+## Welcome
+
+- Optimization / OR notes
+- Paper summaries
+- Code snippets & pseudocode
+
+### About
+여기에 소개를 쓰면 돼요.
