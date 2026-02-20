@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="dcterms.date" content="2026-02-20">
-<meta name="description" content="Multi-trip VRP에서 trip/tour 인덱스가 왜 필요한지, 대표 수식 구조를 짧게 정리.">
+<meta name="description" content="최적화와 경영과학에 대한 개념 정리.">
 
-<title>Multi-trip VRP: quick notes – Blue Sky Sailboat</title>
+<title>What is ‘optimization’? – Blue Sky Sailboat</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,41 +21,6 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -106,6 +71,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -150,12 +144,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#tldr" id="toc-tldr" class="nav-link active" data-scroll-target="#tldr">TL;DR</a></li>
-  <li><a href="#언제-trip-인덱스가-필요해지나" id="toc-언제-trip-인덱스가-필요해지나" class="nav-link" data-scroll-target="#언제-trip-인덱스가-필요해지나">언제 trip 인덱스가 필요해지나?</a></li>
-  <li><a href="#의사코드" id="toc-의사코드" class="nav-link" data-scroll-target="#의사코드">의사코드</a></li>
-  <li><a href="#최소-수식-스케치개념" id="toc-최소-수식-스케치개념" class="nav-link" data-scroll-target="#최소-수식-스케치개념">최소 수식 스케치(개념)</a></li>
-  <li><a href="#python-코드-스니펫" id="toc-python-코드-스니펫" class="nav-link" data-scroll-target="#python-코드-스니펫">Python 코드 스니펫</a></li>
-  <li><a href="#메모" id="toc-메모" class="nav-link" data-scroll-target="#메모">메모</a></li>
+  <li><a href="#경영과학과-최적화" id="toc-경영과학과-최적화" class="nav-link active" data-scroll-target="#경영과학과-최적화">경영과학과 최적화</a></li>
+  <li><a href="#최적화모형수리모형" id="toc-최적화모형수리모형" class="nav-link" data-scroll-target="#최적화모형수리모형">최적화모형(수리모형)</a></li>
+  <li><a href="#최적화모형의-예" id="toc-최적화모형의-예" class="nav-link" data-scroll-target="#최적화모형의-예">최적화모형의 예</a>
+  <ul class="collapse">
+  <li><a href="#배낭문제knapsack-problem" id="toc-배낭문제knapsack-problem" class="nav-link" data-scroll-target="#배낭문제knapsack-problem">배낭문제(knapsack problem)</a></li>
+  <li><a href="#풀이법" id="toc-풀이법" class="nav-link" data-scroll-target="#풀이법">풀이법</a></li>
+  <li><a href="#정수계획법-1" id="toc-정수계획법-1" class="nav-link" data-scroll-target="#정수계획법-1">정수계획법</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -164,16 +160,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Multi-trip VRP: quick notes</h1>
+<h1 class="title">What is ‘optimization’?</h1>
   <div class="quarto-categories">
-    <div class="quarto-category">VRP</div>
     <div class="quarto-category">Optimization</div>
+    <div class="quarto-category">OR</div>
   </div>
   </div>
 
 <div>
   <div class="description">
-    Multi-trip VRP에서 trip/tour 인덱스가 왜 필요한지, 대표 수식 구조를 짧게 정리.
+    최적화와 경영과학에 대한 개념 정리.
   </div>
 </div>
 
@@ -196,72 +192,103 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="tldr" class="level2">
-<h2 class="anchored" data-anchor-id="tldr">TL;DR</h2>
+<section id="경영과학과-최적화" class="level2">
+<h2 class="anchored" data-anchor-id="경영과학과-최적화">경영과학과 최적화</h2>
 <ul>
-<li><strong>Multi-trip VRP</strong>: 한 차량이 하루에 여러 번 depot을 출발/복귀(여러 투어 수행)</li>
-<li>모델링에서 보통 <strong>trip 인덱스(r)</strong> 또는 <strong>route(tour) 인덱스(m)</strong>가 필요해짐</li>
-<li>인덱스를 넣는 방식에 따라 모델 크기/대칭성/해법(컬럼 생성 등)이 달라짐</li>
-</ul>
-</section>
-<section id="언제-trip-인덱스가-필요해지나" class="level2">
-<h2 class="anchored" data-anchor-id="언제-trip-인덱스가-필요해지나">언제 trip 인덱스가 필요해지나?</h2>
+<li><strong>경영과학</strong>(Operation Research): 경영 또는 관리에 대한 공학
 <ul>
-<li>차량 1대가 오전/오후로 <strong>2번 이상</strong> depot에서 출발해서 서로 다른 고객군을 방문</li>
-<li>각 trip마다
-<ul>
-<li>출발/복귀 시간이 다르고</li>
-<li>적재/재고 제약(또는 근무시간 제약)을 따로 적용해야 하는 경우</li>
+<li>운영을 잘하게 돕는 과학적 의사결정 방법 전체를 의미함.</li>
+<li>수리최적화 외에도 시뮬레이션, 데이터 분석 등이 포함됨</li>
 </ul></li>
+<li><strong>최적화</strong>(Optimization): 의사결정문제를 최적화모형으로 모형화하여 해법을 적용, 구현, 결과해석 및 분석을 포함</li>
+<li>의사결정문제: 한정된 제약 하에서 추구하는 목표를 얻기 위해 선택지 중 결정하려는 상황 또는 문제.</li>
 </ul>
 </section>
-<section id="의사코드" class="level2">
-<h2 class="anchored" data-anchor-id="의사코드">의사코드</h2>
-<pre class="text"><code>for vehicle k in Vehicles:
-  for trip r in 1..R_k:
-    start at depot
-    visit a sequence of customers
-    return to depot</code></pre>
-</section>
-<section id="최소-수식-스케치개념" class="level2">
-<h2 class="anchored" data-anchor-id="최소-수식-스케치개념">최소 수식 스케치(개념)</h2>
+<section id="최적화모형수리모형" class="level2">
+<h2 class="anchored" data-anchor-id="최적화모형수리모형">최적화모형(수리모형)</h2>
 <ul>
-<li><code>k</code>: vehicle</li>
-<li><code>r</code>: trip index</li>
-<li><code>i, j</code>: nodes (depot 포함)</li>
-<li><code>x_{i,j,k,r} ∈ {0,1}</code>: trip r에서 k가 i→j 이동하면 1</li>
+<li>현실의 문제를 수식으로 재정의한 것</li>
+<li>구성요소: 의사결정변수, 목적함수, 제약식, 매개변수</li>
 </ul>
-<pre class="text"><code>(Flow)   Σ_j x_{i,j,k,r} = Σ_j x_{j,i,k,r}      for all i, k, r
-(Depot)  Σ_j x_{depot,j,k,r} = 1                for all k, r
-         Σ_i x_{i,depot,k,r} = 1                for all k, r</code></pre>
-<blockquote class="blockquote">
-<p>위 스케치는 “각 trip이 depot에서 시작해서 depot으로 끝나는 경로”를 의미함.</p>
-</blockquote>
 </section>
-<section id="python-코드-스니펫" class="level2">
-<h2 class="anchored" data-anchor-id="python-코드-스니펫">Python 코드 스니펫</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> [<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>]</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> [<span class="dv">1</span>,<span class="dv">4</span>,<span class="dv">2</span>,<span class="dv">5</span>]</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>plt.plot(x,y)</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Demo Plot"</span>)</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="최적화모형의-예" class="level2">
+<h2 class="anchored" data-anchor-id="최적화모형의-예">최적화모형의 예</h2>
+<section id="배낭문제knapsack-problem" class="level3">
+<h3 class="anchored" data-anchor-id="배낭문제knapsack-problem">배낭문제(knapsack problem)</h3>
+<section id="문제정의" class="level4">
+<h4 class="anchored" data-anchor-id="문제정의">문제정의</h4>
+<pre class="text"><code>담을 수 있는 무게가 최대 V인 배낭이 있다. 넣을 수 있는 물건은 총 N개이며,
+각 물건 i의 무게는 v_i이고 배낭에 넣었을 때 p_i만큼의 효용이 발생한다. 
+배낭의 용량을 초과하지 않으면서, 가치의 합이 최대화 되려면 어떤 물건을 담아야하는가?</code></pre>
+</section>
+<section id="구성요소-분해" class="level4">
+<h4 class="anchored" data-anchor-id="구성요소-분해">구성요소 분해</h4>
+<ul>
+<li>결정변수: 각 물건 i를 담을지 말지</li>
+<li>목적함수: 효용 최대화</li>
+<li>제약조건: 최대용량을 넘지 않는다.</li>
+<li>매개변수: 물건의 효용, 무게, 최대용량</li>
+</ul>
+</section>
+<section id="수리식-작성" class="level4">
+<h4 class="anchored" data-anchor-id="수리식-작성">수리식 작성</h4>
+<p><span class="math display">\[
+\begin{aligned}
+maximize \quad &amp; \sum_{i \in N} p_i\cdot x_i \\
+\text{subject to}\quad
+&amp;\sum_{i \in N} v_i\cdot x_i \\
+&amp; x_{i} \in \{0,1\} \quad \forall i \in N
+\end{aligned}
+\]</span></p>
+</section>
+</section>
+<section id="풀이법" class="level3">
+<h3 class="anchored" data-anchor-id="풀이법">풀이법</h3>
+<ul>
+<li>파이썬 문법을 쓰는 gurobi, 구글의 solver, cplex 등의 해법을 적용한다.</li>
+<li>수리모형에는 선형계획법, 비선형계획법, 정수계획법 등등 문제의 형태와 해법 존재여부로 구분한다.</li>
+<li>최적화는 수리모형을 만드는 것 뿐만 아니라 해 존재여부, 최적해 존재여부, 해 또는 최적해를 찾는 과정을 포함한다.</li>
+</ul>
+<section id="선형계획법" class="level4">
+<h4 class="anchored" data-anchor-id="선형계획법">선형계획법</h4>
+<ul>
+<li><span class="math inline">\(ax\le b\)</span>의 형태로 제약식이 나타나며, 결정변수의 차수가 항상 1차인 것을 의미한다.</li>
+<li>결정변수 나누기 결정변수의 형태는 일반적으로 비선형으로 볼 수 있다.</li>
+<li>일반적인 풀이법으로 심플렉스 해법, 타원체 해법, 내부점 해법 등이 존재한다.</li>
+</ul>
+</section>
+<section id="정수계획법" class="level4">
+<h4 class="anchored" data-anchor-id="정수계획법">정수계획법</h4>
+<ul>
+<li>결정변수 중 하나라도 정수여야 한다는 조건이 붙으면 정수계획법으로 취급된다.</li>
+<li>앞선 배낭문제의 경우 담는다 담지 않는다를 0 또는 1로 표현하기에, 정수계획법 문제로 분류한다.</li>
+<li>결정변수가 모두 정수형일 경우 순수정수계획법, 연속인 것과 섞여있다면 혼합정수계획법으로 분류한다.</li>
+<li>0 또는 1의 이진 결정변수의 경우 이진정수계획법(Binary Integer Programmin)으로 분류한다.</li>
+<li>정수계획법의 경우, 선형과 달리 일반적으로 효율적인 해법이 없다.</li>
+</ul>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="images/사진.png" class="img-fluid figure-img" style="width:80.0%"></p>
-<figcaption>MTVRP 결과 예시</figcaption>
+<p><img src="images/LP.png" style="width:80.0%;height:80.0%" class="figure-img"></p>
+<figcaption>LP문제 예시</figcaption>
 </figure>
 </div>
 </section>
-<section id="메모" class="level2">
-<h2 class="anchored" data-anchor-id="메모">메모</h2>
+<section id="정수계획법의-어려움" class="level4">
+<h4 class="anchored" data-anchor-id="정수계획법의-어려움">정수계획법의 어려움</h4>
+<p>직관적으로 이해하기 쉬운 심플렉스 해법으로 예를 들어보자. 심플렉스 해법은 가능해 영역의 꼭짓점을 따라가는 방식이다. 위의 그림에서 하늘색 평면은 가능해 영역, 주황색 기울기는 목적함수의 등고선 정도로 볼 수 있겠다. 가능해 영역이 지금처럼 모서리가 잘려서 나타나는 이유는 선형제약식에 의해 절단되었기 때문이다. 이때 최적해는 꼭짓점에서 나타나는 것을 볼 수 있다.</p>
+<p>특별한 예외가 아닌, 선형계획법의 특징이다. 가능해가 존재한다면 최적해중에 꼭짓점인 해가 반드시 존재한다. 그런데 정수조건이 포함된다면, 최적해가 (3.1, 0.9)로 나타날 때 곤란할 수 있다. 이는 가능해가 될 수 없기 때문이다. 반올림을 하거나 내림을 한다고 생각할 수 있는데, 그렇게 했을 때 나타나는 해가 가능해일지, 그리고 최적해일지는 장담할 수 없다. 그런 맥락에서 정수계획법에서 해를 찾는 방법은 기본적으로 열거법의 형태를 갖는다.</p>
+</section>
+</section>
+<section id="정수계획법-1" class="level3">
+<h3 class="anchored" data-anchor-id="정수계획법-1">정수계획법</h3>
+<p>그럼에도 정수계획법을 쓰는 이유는 무엇일까? 사람 23.3명을 고용할 수는 없어서? 그것도 맞지만, 더 중요한 이유가 있다. 정수로 논리를 표현할 수 있기 때문이다.</p>
 <ul>
-<li>trip 인덱스를 명시하면 직관은 좋아지지만, 변수 수가 커지고 대칭성이 생기기 쉬움</li>
-<li>큰 문제에서는 “trip을 직접 만들기”보다 “route(투어) 단위 컬럼 생성” 접근이 자주 등장함</li>
+<li>“수업 2와 3을 수강하기 위해서는 수업 1을 수강해야한다.” 를 수리식으로 표현할 수 있다.</li>
+<li><span class="math inline">\(x_2+x_3 \le 2 \cdot x_1\)</span></li>
 </ul>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
