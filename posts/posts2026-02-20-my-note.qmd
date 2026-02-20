@@ -48,10 +48,15 @@ for vehicle k in Vehicles:
 ## Python 코드 스니펫
 
 ```python
-def total_time(trips):
-    """trips: list of dicts with keys 'travel' and 'service' (both numeric)."""
-    return sum(t["travel"] + t["service"] for t in trips)
+import matplotlib.pyplot as plt
+
+x = [1,2,3,4]
+y = [1,4,2,5]
+plt.plot(x,y)
+plt.title("Demo Plot")
+plt.show()
 ```
+![MTVRP 결과 예시](images/사진.png){width=80% fig-align="center"}
 
 ## 메모
 

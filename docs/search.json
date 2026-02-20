@@ -1,10 +1,52 @@
 [
   {
-    "objectID": "posts/index.html",
-    "href": "posts/index.html",
-    "title": "Posts",
+    "objectID": "posts/posts2026-02-20-my-note.html",
+    "href": "posts/posts2026-02-20-my-note.html",
+    "title": "Multi-trip VRP: quick notes",
     "section": "",
-    "text": "여기에 글 목록을 둘 거예요."
+    "text": "Multi-trip VRP: 한 차량이 하루에 여러 번 depot을 출발/복귀(여러 투어 수행)\n모델링에서 보통 trip 인덱스(r) 또는 route(tour) 인덱스(m)가 필요해짐\n인덱스를 넣는 방식에 따라 모델 크기/대칭성/해법(컬럼 생성 등)이 달라짐"
+  },
+  {
+    "objectID": "posts/posts2026-02-20-my-note.html#tldr",
+    "href": "posts/posts2026-02-20-my-note.html#tldr",
+    "title": "Multi-trip VRP: quick notes",
+    "section": "",
+    "text": "Multi-trip VRP: 한 차량이 하루에 여러 번 depot을 출발/복귀(여러 투어 수행)\n모델링에서 보통 trip 인덱스(r) 또는 route(tour) 인덱스(m)가 필요해짐\n인덱스를 넣는 방식에 따라 모델 크기/대칭성/해법(컬럼 생성 등)이 달라짐"
+  },
+  {
+    "objectID": "posts/posts2026-02-20-my-note.html#언제-trip-인덱스가-필요해지나",
+    "href": "posts/posts2026-02-20-my-note.html#언제-trip-인덱스가-필요해지나",
+    "title": "Multi-trip VRP: quick notes",
+    "section": "언제 trip 인덱스가 필요해지나?",
+    "text": "언제 trip 인덱스가 필요해지나?\n\n차량 1대가 오전/오후로 2번 이상 depot에서 출발해서 서로 다른 고객군을 방문\n각 trip마다\n\n출발/복귀 시간이 다르고\n적재/재고 제약(또는 근무시간 제약)을 따로 적용해야 하는 경우"
+  },
+  {
+    "objectID": "posts/posts2026-02-20-my-note.html#의사코드",
+    "href": "posts/posts2026-02-20-my-note.html#의사코드",
+    "title": "Multi-trip VRP: quick notes",
+    "section": "의사코드",
+    "text": "의사코드\nfor vehicle k in Vehicles:\n  for trip r in 1..R_k:\n    start at depot\n    visit a sequence of customers\n    return to depot"
+  },
+  {
+    "objectID": "posts/posts2026-02-20-my-note.html#최소-수식-스케치개념",
+    "href": "posts/posts2026-02-20-my-note.html#최소-수식-스케치개념",
+    "title": "Multi-trip VRP: quick notes",
+    "section": "최소 수식 스케치(개념)",
+    "text": "최소 수식 스케치(개념)\n\nk: vehicle\nr: trip index\ni, j: nodes (depot 포함)\nx_{i,j,k,r} ∈ {0,1}: trip r에서 k가 i→j 이동하면 1\n\n(Flow)   Σ_j x_{i,j,k,r} = Σ_j x_{j,i,k,r}      for all i, k, r\n(Depot)  Σ_j x_{depot,j,k,r} = 1                for all k, r\n         Σ_i x_{i,depot,k,r} = 1                for all k, r\n\n위 스케치는 “각 trip이 depot에서 시작해서 depot으로 끝나는 경로”를 의미함."
+  },
+  {
+    "objectID": "posts/posts2026-02-20-my-note.html#python-코드-스니펫",
+    "href": "posts/posts2026-02-20-my-note.html#python-코드-스니펫",
+    "title": "Multi-trip VRP: quick notes",
+    "section": "Python 코드 스니펫",
+    "text": "Python 코드 스니펫\nimport matplotlib.pyplot as plt\n\nx = [1,2,3,4]\ny = [1,4,2,5]\nplt.plot(x,y)\nplt.title(\"Demo Plot\")\nplt.show()\n\n\n\nMTVRP 결과 예시"
+  },
+  {
+    "objectID": "posts/posts2026-02-20-my-note.html#메모",
+    "href": "posts/posts2026-02-20-my-note.html#메모",
+    "title": "Multi-trip VRP: quick notes",
+    "section": "메모",
+    "text": "메모\n\ntrip 인덱스를 명시하면 직관은 좋아지지만, 변수 수가 커지고 대칭성이 생기기 쉬움\n큰 문제에서는 “trip을 직접 만들기”보다 “route(투어) 단위 컬럼 생성” 접근이 자주 등장함"
   },
   {
     "objectID": "index.html",
@@ -19,5 +61,12 @@
     "title": "Blue Sky Sailboat",
     "section": "",
     "text": "Optimization / OR notes\nPaper summaries\nCode snippets & pseudocode\n\n\n\n여기에 소개를 쓰면 돼요."
+  },
+  {
+    "objectID": "posts/index.html",
+    "href": "posts/index.html",
+    "title": "Posts",
+    "section": "",
+    "text": "Multi-trip VRP: quick notes\n\n\n\nVRP\n\nOptimization\n\n\n\nMulti-trip VRP에서 trip/tour 인덱스가 왜 필요한지, 대표 수식 구조를 짧게 정리.\n\n\n\nFeb 20, 2026\n\n\n\n\n\n\nNo matching items"
   }
 ]
