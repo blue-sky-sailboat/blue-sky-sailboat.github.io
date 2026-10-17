@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#162d3d">
+  <meta name="description" content="인천대학교 산업경영공학과 학생을 위한 정보 모음. 학사·졸업·장학·대회·취업 정보와 준비 경험을 함께 찾아보세요.">
+  <title>산경모아 — 우리의 다음을 모으다</title>
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./styles.css">
+  <script src="./data.js" defer></script>
+  <script src="./app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">본문으로 바로가기</a>
+  <aside class="sidebar" aria-label="주 메뉴">
+    <a class="brand" href="#home" aria-label="산경모아 홈">
+      <svg class="brand-mark" viewBox="0 0 40 40" fill="none" aria-hidden="true"><path d="M5 30 15 10l8 15 5-10 8 15" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="31" cy="7" r="3" fill="currentColor"/></svg>
+      <span>산경모아<span class="brand-caption">INU · STUDENT RESOURCE HUB</span></span>
+    </a>
+    <div class="sidebar-label">우리의 학과생활</div>
+    <nav class="nav-list">
+      <a href="#home" data-nav="home"><span data-icon="home"></span>홈<span class="nav-dot"></span></a>
+      <a href="#notices" data-nav="notices"><span data-icon="grid"></span>정보 모아보기</a>
+      <a href="#archive" data-nav="archive"><span data-icon="book"></span>경험 아카이브</a>
+      <a href="#guide" data-nav="guide"><span data-icon="compass"></span>전공·진로 길잡이</a>
+      <a href="#saved" data-nav="saved"><span data-icon="bookmark"></span>저장한 정보<span id="saved-count" class="nav-count">0</span></a>
+    </nav>
+    <div class="sidebar-note"><span class="small-spark">✳</span><h2>한 사람의 경험이<br>누군가의 시작이 되도록.</h2><p>대회와 취업 준비 이야기를<br>함께 기록해요.</p><button class="text-button" data-action="contribute">기록 남기는 방법 <span aria-hidden="true">↗</span></button></div>
+    <div class="sidebar-bottom"><span class="status-dot"></span> 학생이 만드는 정보 공간<button data-action="about">운영 안내 <span aria-hidden="true">↗</span></button></div>
+  </aside>
+
+  <div class="page-shell">
+    <header class="topbar">
+      <div class="topbar-title">인천대학교 <span>/</span> 산업경영공학과</div>
+      <form id="search-form" class="search-box" role="search"><span data-icon="search"></span><input id="site-search" type="search" aria-label="공식 정보 검색" placeholder="장학금, 졸업, 대회 준비…" autocomplete="off"><kbd aria-hidden="true">/</kbd><button type="submit" class="sr-only">검색</button></form>
+      <span class="beta-tag">STUDENT BETA</span>
+    </header>
+
+    <main id="main" tabindex="-1">
+      <div id="home-intro">
+        <section class="hero" aria-labelledby="hero-title">
+          <div class="hero-copy"><div class="eyebrow"><span></span> OUR NEXT CHAPTER, TOGETHER</div><h1 id="hero-title">산경의 다음을,<br>여기서 찾다<span class="mint-period">.</span></h1><p>흩어진 정보는 한곳에, 사라지던 경험은 기록으로.<br>우리에게 필요한 기회와 준비 과정을 모읍니다.</p><div class="hero-actions"><a class="button button-mint" href="#notices">필요한 정보 찾기 <span data-icon="arrow"></span></a><a class="hero-secondary" href="#archive">경험 아카이브 <span aria-hidden="true">↗</span></a></div></div>
+          <div class="hero-diagram" aria-hidden="true"><div class="diagram-grid"></div><svg class="diagram-lines" viewBox="0 0 360 280"><path d="M53 197 177 74 306 177 53 197" fill="none" stroke="#709b9a" stroke-width="1" stroke-dasharray="4 7"/><circle cx="178" cy="149" r="97" fill="none" stroke="#94cfc3" stroke-opacity=".18"/><circle cx="178" cy="149" r="64" fill="none" stroke="#94cfc3" stroke-opacity=".12"/></svg><div class="diagram-node node-one"><span>01</span>배우고<b>LEARN</b></div><div class="diagram-node node-two"><span>02</span>경험하고<b>TRY</b></div><div class="diagram-node node-three"><span>03</span>나아가다<b>GROW</b></div><div class="diagram-center">✳</div><div class="diagram-caption">YOUR POSSIBILITIES, CONNECTED.</div></div>
+        </section>
+        <div class="launch-note"><span class="note-icon" data-icon="info"></span><p><strong>산경모아의 첫 페이지입니다.</strong> 지금은 공식 정보 연결과 준비 가이드를 제공해요. 실제 경험 기록은 함께 모으고 있습니다.</p><button data-action="about">운영 안내 <span aria-hidden="true">↗</span></button></div>
+        <section class="quick-links" aria-label="자주 찾는 정보">
+          <a href="#notices/scholarship"><span class="quick-icon green" data-icon="gift"></span><span><strong>장학금</strong><small>놓치고 싶지 않은 지원</small></span><span class="quick-arrow" aria-hidden="true">↗</span></a>
+          <a href="#notices/activity"><span class="quick-icon orange" data-icon="flag"></span><span><strong>대회·활동</strong><small>배움을 경험으로</small></span><span class="quick-arrow" aria-hidden="true">↗</span></a>
+          <a href="#notices/graduation"><span class="quick-icon blue" data-icon="cap"></span><span><strong>학사·졸업</strong><small>차근차근 챙기는 학교생활</small></span><span class="quick-arrow" aria-hidden="true">↗</span></a>
+          <a href="#notices/career"><span class="quick-icon lilac" data-icon="bag"></span><span><strong>취업·진로</strong><small>다음 단계의 시작</small></span><span class="quick-arrow" aria-hidden="true">↗</span></a>
+        </section>
+      </div>
+
+      <div class="content-layout">
+        <div class="content-primary">
+          <section id="information-section" class="section-block" aria-labelledby="information-title">
+            <div class="section-heading"><div><span class="section-kicker" id="information-kicker">FIND YOUR OPPORTUNITY</span><h2 id="information-title">필요한 정보, 모아보기<span class="heading-dot">.</span></h2></div><a href="#notices" id="all-information-link" class="subtle-link">전체 보기 <span aria-hidden="true">↗</span></a></div>
+            <p class="section-description" id="information-description">자주 찾는 공식 게시판과 안내를 한곳에서 확인하세요.</p>
+            <div id="filter-tabs" class="filter-tabs" role="group" aria-label="정보 분야"></div>
+            <div class="list-toolbar"><span id="result-count" role="status" aria-live="polite"></span><span class="source-label"><span class="status-dot"></span>공식 출처 연결</span></div>
+            <div id="resource-list" class="resource-list"></div>
+            <div id="empty-state" class="empty-state" hidden><span data-icon="search"></span><h3>찾으시는 정보가 없어요.</h3><p id="empty-description">다른 검색어나 분야를 선택해 보세요.</p><button class="button button-dark" data-action="reset">전체 정보 보기</button></div>
+            <p class="list-footnote"><span data-icon="info"></span>공식 게시판을 연결하는 초안입니다. 개별 공고의 모집 여부와 마감은 원문에서 확인해 주세요.</p>
+          </section>
+
+          <section id="archive-section" class="section-block" aria-labelledby="archive-title"><div class="section-heading"><div><span class="section-kicker">EXPERIENCE BECOMES A GUIDE</span><h2 id="archive-title">경험이 쌓이는 곳<span class="heading-dot">.</span></h2></div><span class="outline-tag">첫 기록 모집 중</span></div><p class="section-description">시작이 막막할 때 펼쳐볼 준비 가이드. 다음 페이지는 우리의 경험으로 채워요.</p><div id="archive-cards" class="archive-grid"></div><div class="archive-invitation"><span data-icon="pen"></span><p><strong>화려한 결과보다, 실제 준비 과정이 궁금해요.</strong><span>성공도 시행착오도 후배에게는 좋은 출발점이 됩니다.</span></p><button class="text-button" data-action="contribute">첫 기록 남기기 <span aria-hidden="true">↗</span></button></div></section>
+
+          <section id="guide-section" class="section-block" aria-labelledby="guide-title"><div class="section-heading"><div><span class="section-kicker">EXPLORE YOUR DIRECTION</span><h2 id="guide-title">산업공학, 어디로 이어질까?<span class="heading-dot">.</span></h2></div></div><p class="section-description">관심 있는 문제에서 나의 방향을 찾아보세요.</p><div id="field-cards" class="field-grid"></div><p class="list-footnote">분야를 이해하기 위한 편집 가이드입니다. 학과의 공식 트랙·개설 과목은 교육과정 원문에서 확인하세요.</p></section>
+        </div>
+
+        <aside id="right-rail" class="right-rail" aria-label="학교생활 도우미">
+          <section class="checklist-card"><div class="rail-label"><span data-icon="check-circle"></span> MY SEMESTER</div><h2>이번 학기,<br>이것부터 챙겨요.</h2><p>작은 확인이 든든한 학기를 만들어요.</p><div id="semester-checklist"></div><div class="checklist-progress"><span id="checklist-status">0 / 3 확인</span><span class="progress-track"><span id="checklist-progress-bar"></span></span></div><small>체크한 내용은 이 브라우저에만 저장됩니다.</small></section>
+          <section class="source-card"><div class="rail-label">OFFICIAL SHORTCUTS</div><h2>원문으로 바로 가기</h2><a href="https://www.inu.ac.kr/ime/index.do?epTicket=LOG" target="_blank" rel="noopener noreferrer">학과 공식 홈페이지 <span aria-hidden="true">↗</span></a><a href="https://www.inu.ac.kr/ime/3093/subview.do" target="_blank" rel="noopener noreferrer">학과 교육과정 <span aria-hidden="true">↗</span></a><a href="https://www.inu.ac.kr/inu/1519/subview.do" target="_blank" rel="noopener noreferrer">인천대학교 장학 공지 <span aria-hidden="true">↗</span></a><div class="source-date">연결 경로 확인 · 2026.10.17</div></section>
+          <div class="rail-quote"><span aria-hidden="true">“</span><p>혼자 찾던 정보를,<br>함께 쌓는 자산으로.</p><small>MADE BY STUDENTS, FOR STUDENTS.</small></div>
+        </aside>
+      </div>
+      <footer class="footer"><div class="footer-brand">산경모아 <span>우리의 다음을 모으다.</span></div><p>인천대학교 산업경영공학과 학생이 만드는 비공식 정보 공간입니다.</p><div><span>© 2026 산경모아</span><button data-action="about">운영·저장 안내</button><a href="https://github.com/blue-sky-sailboat/blue-sky-sailboat.github.io" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a></div></footer>
+    </main>
+  </div>
+  <dialog id="detail-dialog" aria-labelledby="dialog-title"><div class="dialog-top"><span id="dialog-eyebrow" class="section-kicker"></span><button id="dialog-close" class="icon-button" aria-label="창 닫기"><span data-icon="close"></span></button></div><h2 id="dialog-title"></h2><div id="dialog-body"></div></dialog>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <noscript><div class="noscript-message">검색과 저장 기능은 JavaScript가 필요합니다. <a href="https://www.inu.ac.kr/ime/index.do?epTicket=LOG">학과 공식 홈페이지에서 공지를 확인하세요.</a></div></noscript>
+</body>
+</html>
